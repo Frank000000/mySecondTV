@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="wrap" ref="wrap" :style="{background: `url(${bgImg}) no-repeat`}">
+    <div class="wrap" ref="wrap" :style="{background: bgImg ? `url(${bgImg}) no-repeat` : ''}">
       <slot></slot>
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     transform-origin: 0px 0px 0px;
     background-size: contain;
     background-position: 50% 0;
-    background-color: rgb(0, 0, 0);
+    // background-color: rgb(0, 0, 0);
     min-width: auto;
     width: 1920px;
     min-height: auto;

@@ -24,6 +24,30 @@ const routes = [
       title: '用户协议'
     }
   },
+  {
+    path: '/heart-rate',
+    name: 'HeartRate',
+    component: () => import('@/views/HeartRate.vue'),
+    meta: {
+      title: '心率'
+    }
+  },
+  {
+    path: '/member',
+    name: 'Member',
+    component: () => import('@/views/Member.vue'),
+    meta: {
+      title: '家庭成员'
+    }
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    component: () => import('@/views/Help.vue'),
+    meta: {
+      title: '帮助'
+    }
+  },
 ]
 
 const router = new VueRouter({

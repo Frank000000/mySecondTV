@@ -6,6 +6,7 @@ import vueParticles from 'vue-particles'
 import Vcomp from './components/index'
 // import Toast from './components/toast'
 import focusable from 'vue-tv-focusable';
+import '@/utils/dateFormat';
 
 import '@/assets/styles/base.scss'
 import '@/assets/styles/common.scss'

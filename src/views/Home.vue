@@ -2,20 +2,17 @@
   <FullScreenContainer :bgImg="require('@/assets/img/home/bg@1x.png')">
     <Top />
     <div class="home-card-box">
-      <div style="display: inline-block;" v-for="(item,idx) in listObj" :key="idx">
-        <HomeCard v-if="isCardFocus" :data-obj="item" />
-        <HomeCardNofocus v-if="!isCardFocus" :data-obj="item" />
+      <div style="display: inline-block;" v-for="(item, idx) in listObj" :key="idx" @click="onJump(item.type)">
+        <HomeCard :data-obj="item" />
       </div>
     </div>
-    <<div class="home-button-box">>
-      <Button v-if="isCardFocus" class="fs36" :width="360" is-font-scale>添加/切换成员</Button>
-      <Button v-if="isCardFocus" class="fs36" :width="360" is-font-scale>使用帮助</Button>
-      <ButtonNofocus v-if="!isCardFocus" class="fs36" :width="360" is-font-scale>添加/切换成员</ButtonNofocus>
-      <ButtonNofocus v-if="!isCardFocus" class="fs36" :width="360" is-font-scale>使用帮助</ButtonNofocus>
+    <div class="home-button-box">>
+      <Button class="fs36" :width="360" is-font-scale  @click.native="onJump('member')">添加/切换成员</Button>
+      <Button class="fs36" :width="360" is-font-scale>使用帮助</Button>
     </div>
     <!-- 用户需知弹窗 -->
     <Popup v-if="isShowKnowPopup">
-      <div class="need-know">
+      <div class="need-know" ref="need-know">
         <div class="need-know-title">用户需知</div>
         <div class="need-know-text mt16">
           您即将使用的翼家健康服务是由中国电信天翼云盘根据您在手机端（云端app小程序、H5）绑定的健康设备所产生的数据。
@@ -60,6 +57,7 @@ export default {
   	return {
   		listObj: {
         heartRate: {
+          type: 'heart-rate',
           name: "心率",
           imgUrl: require('@/assets/img/home/heart-rate.png'),
           heartRate: 77,
@@ -103,13 +101,11 @@ export default {
   	}
   },
   computed: {
-  	isCardFocus(){ //弹出后卡片不能聚焦
-      return !this.isShowKnowPopup && !this.isShowBindPopup
-    }
   },
   created() {
     this.$nextTick(() => {
       if(this.isShowKnowPopup){
+        // this.open()
         this.$tv.requestFocus(this.$refs.agreement)
       }
     })
@@ -117,7 +113,33 @@ export default {
   mounted() {
   },
   methods: {
-    
+    open() {
+      // this.show = !this.show;
+      // this.$tv.limitingEl = document.querySelector(".need-know"); // 只有.demo5里面的focusable可以获取焦点
+      this.$tv.limitingEl = this.$refs["need-know"]; // 只有need-know里面的focusable可以获取焦点
+      // this.$tv.scrollEl = this.$tv.getElementByPath(
+      //   '//div[@class="demo demo5"]'
+      // );
+      // this.$tv.requestFocus(
+      //   this.$tv.getElementByPath('//div[@class="demo demo5"]/span[3]')
+      // );
+    },
+    close() {
+    //   this.show = !this.show;
+    //   this.$tv.scrollEl = this.$tv.getElementByPath('//div[@class="demo"]');
+    //   if(this.focusEl){this.$tv.requestFocus(this.focusEl)}
+      this.$tv.limitingEl = null;
+    },
+    onJump(type) {
+      let obj = {
+        'heart-rate': '/heart-rate',
+        'member': '/member'
+      }
+
+      this.$router.push({
+        path: obj[type]
+      })
+    }
   }
 }
 </script>

@@ -36,7 +36,7 @@ export default {
   text-align: center;
   &.focus {
     line-height: 76px;
-    background: #E99100;
+    background: #E99100 !important;
     border: 6px solid #FEC05B;
     box-shadow: 0 0 17px 0 rgba(254,192,91,0.50);
     border-radius: 44px;

@@ -4,19 +4,29 @@
 import FullScreenContainer from './full-screen-container' //全屏盒子
 import Top from './top' // 界面顶部状态
 import HomeCard from './home-card' // 首页卡片
-import HomeCardNofocus from './home-card-nofocus' // 首页卡片(不聚焦)
 import Button from './button' // 按钮
-import ButtonNofocus from './button-nofocus' // 按钮(不聚焦)
 import Popup from './popup' //弹出层
+import BindPopup from './bind-popup' //未绑定弹出层
+import DaysLeft from './days-left' //天数左侧
+import EchartContainer from './echart-container' //echart盒子
+import IntroRight from './intro-right' //说明右侧盒子
+import Card from './card' //卡片
+import DetailButtonBox from './detail-button-box' //详情按钮盒子
+import HealthRateChart from './health-rate-chart' //详情按钮盒子
 
 const components = {
   FullScreenContainer,
   Top,
   HomeCard,
-  HomeCardNofocus,
   Button,
-  ButtonNofocus,
-  Popup
+  Popup,
+  BindPopup,
+  DaysLeft,
+  EchartContainer,
+  IntroRight,
+  Card,
+  DetailButtonBox,
+  HealthRateChart
 };
 
 const install = (Vue = {}) => {
